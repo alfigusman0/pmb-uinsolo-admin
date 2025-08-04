@@ -8,9 +8,9 @@
  * @category    	Libraries
  * @porting author	alfi.gusman.9f@gmail.com
  * @original author	http://alfi-gusman.web.id
- * @updated			2025-07-09 15:11
+ * @updated			2025-08-04 15:11
  *
- * @version		    2.1.1
+ * @version		    2.2.0
  */
 
 defined('BASEPATH') or exit('No direct script access allowed');
@@ -225,6 +225,33 @@ class Master
                 'User-Agent: UINSAID-Api'
             ),
             "request" => null,
+        );
+        return $this->CI->utilities->curl($parrams);
+    }
+
+    /* Send Email
+    $rules = array(
+        'to' => "",
+        'cc' => "",
+        'subject' => "",
+        'html' => ""
+    );
+    */
+    public function sendEmail($rules)
+    {
+        $token = $this->CI->input->cookie($_ENV['COOKIE_NAME'], TRUE);
+        if (empty($token)) {
+            $token = $_ENV['MASTER_TOKEN'];
+        }
+        $parrams = array(
+            'url' => $_ENV['MASTER_HOST'] . 'gmail/send',
+            'method' => 'POST',
+            "header" => array(
+                "Authorization: Bearer $token",
+                'Content-Type: application/x-www-form-urlencoded',
+                'User-Agent: UINSAID-Api'
+            ),
+            "request" => http_build_query($rules),
         );
         return $this->CI->utilities->curl($parrams);
     }
