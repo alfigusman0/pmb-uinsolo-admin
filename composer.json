@@ -1,0 +1,41 @@
+{
+	"description": "PMB Admin",
+	"name": "pmbuin/admin",
+	"type": "project",
+	"homepage": "https://pmb.uinsaid.ac.id/admin/",
+	"license": "MIT",
+	"support": {
+		"source": "https://github.com/alfigusman0/pmb-uinsolo"
+	},
+	"authors": [{
+			"name": "Alfi Gusman",
+			"email": "alfigusman0@gmail.com",
+			"homepage": "http://alfi-gusman.web.id",
+			"role": "Developer"
+		},
+		{
+			"name": "Piscal Pratama Putra",
+			"email": "piscalpratama@gmail.com",
+			"homepage": "http://piscal-pratama.web.id",
+			"role": "Developer"
+		}
+	],
+	"require": {
+		"php": ">=5.3.7",
+		"seunmatt/codeigniter-log-viewer": "^1.1.2",
+		"phpoffice/phpspreadsheet": "^1.28",
+		"mpdf/mpdf": "^8.0.4",
+		"firebase/php-jwt": "^6.8.1",
+		"vlucas/phpdotenv": "^5.5.0",
+		"chriskacerguis/codeigniter-restserver": "^3.1.4",
+		"endroid/qr-code": "^4.6.1",
+		"aws/aws-sdk-php": "^3.281.3"
+	},
+	"suggest": {
+		"paragonie/random_compat": "Provides better randomness in PHP 5.x"
+	},
+	"require-dev": {
+		"mikey179/vfsstream": "1.1.*",
+		"phpunit/phpunit": "4.* || 5.*"
+	}
+}

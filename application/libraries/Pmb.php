@@ -1,0 +1,231 @@
+<?php
+
+/**
+ * PHP Pmb porting for Codeigniter
+ *
+ * @package        	CodeIgniter
+ * @subpackage    	Libraries
+ * @category    	Libraries
+ * @porting author	alfi.gusman.9f@gmail.com
+ * @original author	http://alfi-gusman.web.id
+ * @updated			2025-07-09 15:11
+ *
+ * @version		    2.1.1
+ */
+
+defined('BASEPATH') or exit('No direct script access allowed');
+class Pmb
+{
+    protected $CI;
+    public function __construct()
+    {
+        // Assign the CodeIgniter super-object
+        $this->CI = &get_instance();
+        $this->CI->load->helper('cookie');
+    }
+
+    /* Auth Login */
+    public function Login($email, $password)
+    {
+        $parrams = array(
+            'url' => $_ENV['PMB_API_HOST'] . 'auth/login',
+            'method' => 'POST',
+            "header" => array(
+                'Content-Type: application/x-www-form-urlencoded',
+                'User-Agent: UINSOLO-Api'
+            ),
+            "request" => http_build_query(array(
+                'email' => $email,
+                'password' => $password,
+            )),
+        );
+        return $this->CI->utilities->curl($parrams);
+    }
+
+    /* Auth Logout */
+    public function Logout($token)
+    {
+        $parrams = array(
+            'url' => $_ENV['PMB_API_HOST'] . 'auth/logout',
+            'method' => 'GET',
+            "header" => array(
+                "Authorization: Bearer $token",
+                'User-Agent: UINSOLO-Api'
+            ),
+            "request" => null,
+        );
+        return $this->CI->utilities->curl($parrams);
+    }
+
+    /* Auth Create Token */
+    public function CreateToken($payload)
+    {
+        $parrams = array(
+            'url' => $_ENV['PMB_API_HOST'] . 'auth/token/create',
+            'method' => 'POST',
+            "header" => array(
+                'Content-Type: application/json',
+                'User-Agent: UINSOLO-Api'
+            ),
+            "request" => json_encode(array(
+                'payload' => $payload
+            )),
+        );
+        return $this->CI->utilities->curl($parrams);
+    }
+
+    /* Auth Refresh Token */
+    public function RefreshToken($token, $payload = null)
+    {
+        $parrams = array(
+            'url' => $_ENV['PMB_API_HOST'] . 'auth/token',
+            'method' => 'POST',
+            "header" => array(
+                "Authorization: Bearer $token",
+                'Content-Type: application/json',
+                'User-Agent: UINSOLO-Api'
+            ),
+            "request" => json_encode(array(
+                'payload' => $payload
+            )),
+        );
+        return $this->CI->utilities->curl($parrams);
+    }
+
+    /* Auth Cek Token */
+    public function CekToken($token)
+    {
+        $parrams = array(
+            'url' => $_ENV['PMB_API_HOST'] . 'auth/cek',
+            'method' => 'GET',
+            "header" => array(
+                "Authorization: Bearer $token",
+                'User-Agent: UINSOLO-Api'
+            ),
+            "request" => null,
+        );
+        return $this->CI->utilities->curl($parrams);
+    }
+
+    /* Auth Delete Token */
+    public function DeleteToken($token, $keterangan)
+    {
+        $parrams = array(
+            'url' => $_ENV['PMB_API_HOST'] . 'auth/token',
+            'method' => 'DELETE',
+            "header" => array(
+                "Authorization: Bearer $token",
+                'Content-Type: application/json',
+                'User-Agent: UINSOLO-Api'
+            ),
+            "request" => json_encode(array(
+                'keterangan' => $keterangan
+            )),
+        );
+        return $this->CI->utilities->curl($parrams);
+    }
+
+    /* Create
+    $rules = array(
+        'url' => "",
+        'data'=> "",
+    );
+    */
+    public function create($rules)
+    {
+        $token = $this->CI->input->cookie($_ENV['COOKIE_FRONTEND'], TRUE);
+        $parrams = array(
+            'url' => $_ENV['PMB_API_HOST'] . $rules['url'],
+            'method' => 'POST',
+            "header" => array(
+                "Authorization: Bearer $token",
+                'Content-Type: application/x-www-form-urlencoded',
+                'User-Agent: UINSOLO-Api'
+            ),
+            "request" => http_build_query($rules['data']),
+        );
+        return $this->CI->utilities->curl($parrams);
+    }
+
+    /* Read
+    $url = "";
+    */
+    public function read($url)
+    {
+        $token = $this->CI->input->cookie($_ENV['COOKIE_FRONTEND'], TRUE);
+        if (empty($token)) {
+            $token = $_ENV['MASTER_TOKEN'];
+        }
+        $parrams = array(
+            'url' => $_ENV['PMB_API_HOST'] . $url,
+            'method' => 'GET',
+            "header" => array(
+                "Authorization: Bearer $token",
+                'User-Agent: UINSOLO-Api'
+            ),
+            "request" => null,
+        );
+        return $this->CI->utilities->curl($parrams);
+    }
+
+    /* Update
+    $rules = array(
+        'url' => "",
+        'data'=> "",
+    );
+    */
+    public function update($rules)
+    {
+        $token = $this->CI->input->cookie($_ENV['COOKIE_FRONTEND'], TRUE);
+        $parrams = array(
+            'url' => $_ENV['PMB_API_HOST'] . $rules['url'],
+            'method' => 'PUT',
+            "header" => array(
+                "Authorization: Bearer $token",
+                'Content-Type: application/x-www-form-urlencoded',
+                'User-Agent: UINSOLO-Api'
+            ),
+            "request" => http_build_query($rules['data']),
+        );
+        return $this->CI->utilities->curl($parrams);
+    }
+
+    /* Delete
+    $url = "";
+    */
+    public function delete($url)
+    {
+        $token = $this->CI->input->cookie($_ENV['COOKIE_FRONTEND'], TRUE);
+        $parrams = array(
+            'url' => $_ENV['PMB_API_HOST'] . $url,
+            'method' => 'DELETE',
+            "header" => array(
+                "Authorization: Bearer $token",
+                'User-Agent: UINSOLO-Api'
+            ),
+            "request" => null,
+        );
+        return $this->CI->utilities->curl($parrams);
+    }
+
+    /* Single
+    $url = "";
+    */
+    public function single($url)
+    {
+        $token = $this->CI->input->cookie($_ENV['COOKIE_FRONTEND'], TRUE);
+        if (empty($token)) {
+            $token = $_ENV['MASTER_TOKEN'];
+        }
+        $parrams = array(
+            'url' => $_ENV['PMB_API_HOST'] . $url,
+            'method' => 'GET',
+            "header" => array(
+                "Authorization: Bearer $token",
+                'User-Agent: UINSOLO-Api'
+            ),
+            "request" => null,
+        );
+        return $this->CI->utilities->curl($parrams);
+    }
+}
