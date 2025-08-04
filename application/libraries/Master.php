@@ -32,7 +32,7 @@ class Master
             'method' => 'POST',
             "header" => array(
                 'Content-Type: application/x-www-form-urlencoded',
-                'User-Agent: UINSOLO-Api'
+                'User-Agent: UINSAID-Api'
             ),
             "request" => http_build_query(array(
                 'username' => $username,
@@ -50,7 +50,7 @@ class Master
             'method' => 'GET',
             "header" => array(
                 "Authorization: Bearer $token",
-                'User-Agent: UINSOLO-Api'
+                'User-Agent: UINSAID-Api'
             ),
             "request" => null,
         );
@@ -65,7 +65,7 @@ class Master
             'method' => 'POST',
             "header" => array(
                 'Content-Type: application/json',
-                'User-Agent: UINSOLO-Api'
+                'User-Agent: UINSAID-Api'
             ),
             "request" => json_encode(array(
                 'payload' => $payload
@@ -83,7 +83,7 @@ class Master
             "header" => array(
                 "Authorization: Bearer $token",
                 'Content-Type: application/json',
-                'User-Agent: UINSOLO-Api'
+                'User-Agent: UINSAID-Api'
             ),
             "request" => json_encode(array(
                 'payload' => $payload
@@ -100,7 +100,7 @@ class Master
             'method' => 'GET',
             "header" => array(
                 "Authorization: Bearer $token",
-                'User-Agent: UINSOLO-Api'
+                'User-Agent: UINSAID-Api'
             ),
             "request" => null,
         );
@@ -116,7 +116,7 @@ class Master
             "header" => array(
                 "Authorization: Bearer $token",
                 'Content-Type: application/json',
-                'User-Agent: UINSOLO-Api'
+                'User-Agent: UINSAID-Api'
             ),
             "request" => json_encode(array(
                 'keterangan' => $keterangan
@@ -140,7 +140,7 @@ class Master
             "header" => array(
                 "Authorization: Bearer $token",
                 'Content-Type: application/x-www-form-urlencoded',
-                'User-Agent: UINSOLO-Api'
+                'User-Agent: UINSAID-Api'
             ),
             "request" => http_build_query($rules['data']),
         );
@@ -161,7 +161,7 @@ class Master
             'method' => 'GET',
             "header" => array(
                 "Authorization: Bearer $token",
-                'User-Agent: UINSOLO-Api'
+                'User-Agent: UINSAID-Api'
             ),
             "request" => null,
         );
@@ -183,7 +183,7 @@ class Master
             "header" => array(
                 "Authorization: Bearer $token",
                 'Content-Type: application/x-www-form-urlencoded',
-                'User-Agent: UINSOLO-Api'
+                'User-Agent: UINSAID-Api'
             ),
             "request" => http_build_query($rules['data']),
         );
@@ -201,7 +201,7 @@ class Master
             'method' => 'DELETE',
             "header" => array(
                 "Authorization: Bearer $token",
-                'User-Agent: UINSOLO-Api'
+                'User-Agent: UINSAID-Api'
             ),
             "request" => null,
         );
@@ -222,7 +222,7 @@ class Master
             'method' => 'GET',
             "header" => array(
                 "Authorization: Bearer $token",
-                'User-Agent: UINSOLO-Api'
+                'User-Agent: UINSAID-Api'
             ),
             "request" => null,
         );

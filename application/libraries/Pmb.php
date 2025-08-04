@@ -32,7 +32,7 @@ class Pmb
             'method' => 'POST',
             "header" => array(
                 'Content-Type: application/x-www-form-urlencoded',
-                'User-Agent: UINSOLO-Api'
+                'User-Agent: UINSAID-Api'
             ),
             "request" => http_build_query(array(
                 'email' => $email,
@@ -50,7 +50,7 @@ class Pmb
             'method' => 'GET',
             "header" => array(
                 "Authorization: Bearer $token",
-                'User-Agent: UINSOLO-Api'
+                'User-Agent: UINSAID-Api'
             ),
             "request" => null,
         );
@@ -65,7 +65,7 @@ class Pmb
             'method' => 'POST',
             "header" => array(
                 'Content-Type: application/json',
-                'User-Agent: UINSOLO-Api'
+                'User-Agent: UINSAID-Api'
             ),
             "request" => json_encode(array(
                 'payload' => $payload
@@ -83,7 +83,7 @@ class Pmb
             "header" => array(
                 "Authorization: Bearer $token",
                 'Content-Type: application/json',
-                'User-Agent: UINSOLO-Api'
+                'User-Agent: UINSAID-Api'
             ),
             "request" => json_encode(array(
                 'payload' => $payload
@@ -100,7 +100,7 @@ class Pmb
             'method' => 'GET',
             "header" => array(
                 "Authorization: Bearer $token",
-                'User-Agent: UINSOLO-Api'
+                'User-Agent: UINSAID-Api'
             ),
             "request" => null,
         );
@@ -116,7 +116,7 @@ class Pmb
             "header" => array(
                 "Authorization: Bearer $token",
                 'Content-Type: application/json',
-                'User-Agent: UINSOLO-Api'
+                'User-Agent: UINSAID-Api'
             ),
             "request" => json_encode(array(
                 'keterangan' => $keterangan
@@ -140,7 +140,7 @@ class Pmb
             "header" => array(
                 "Authorization: Bearer $token",
                 'Content-Type: application/x-www-form-urlencoded',
-                'User-Agent: UINSOLO-Api'
+                'User-Agent: UINSAID-Api'
             ),
             "request" => http_build_query($rules['data']),
         );
@@ -153,15 +153,12 @@ class Pmb
     public function read($url)
     {
         $token = $this->CI->input->cookie($_ENV['COOKIE_FRONTEND'], TRUE);
-        if (empty($token)) {
-            $token = $_ENV['MASTER_TOKEN'];
-        }
         $parrams = array(
             'url' => $_ENV['PMB_API_HOST'] . $url,
             'method' => 'GET',
             "header" => array(
                 "Authorization: Bearer $token",
-                'User-Agent: UINSOLO-Api'
+                'User-Agent: UINSAID-Api'
             ),
             "request" => null,
         );
@@ -183,7 +180,7 @@ class Pmb
             "header" => array(
                 "Authorization: Bearer $token",
                 'Content-Type: application/x-www-form-urlencoded',
-                'User-Agent: UINSOLO-Api'
+                'User-Agent: UINSAID-Api'
             ),
             "request" => http_build_query($rules['data']),
         );
@@ -201,7 +198,7 @@ class Pmb
             'method' => 'DELETE',
             "header" => array(
                 "Authorization: Bearer $token",
-                'User-Agent: UINSOLO-Api'
+                'User-Agent: UINSAID-Api'
             ),
             "request" => null,
         );
@@ -214,15 +211,12 @@ class Pmb
     public function single($url)
     {
         $token = $this->CI->input->cookie($_ENV['COOKIE_FRONTEND'], TRUE);
-        if (empty($token)) {
-            $token = $_ENV['MASTER_TOKEN'];
-        }
         $parrams = array(
             'url' => $_ENV['PMB_API_HOST'] . $url,
             'method' => 'GET',
             "header" => array(
                 "Authorization: Bearer $token",
-                'User-Agent: UINSOLO-Api'
+                'User-Agent: UINSAID-Api'
             ),
             "request" => null,
         );
