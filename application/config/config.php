@@ -396,7 +396,7 @@ $config['encryption_key'] = '';
 | except for 'cookie_prefix' and 'cookie_httponly', which are ignored here.
 |
 */
-/* Database
+/* Database */
 $config['sess_driver'] = 'database';
 $config['sess_cookie_name'] = 'ci_session';
 $config['sess_expiration'] = 7200;
@@ -404,9 +404,9 @@ $config['sess_save_path'] = 'ci_session';
 $config['sess_match_ip'] = TRUE;
 $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;
-*/
 
-/* Redis */
+
+/* Redis 
 $config['sess_driver'] = 'redis';
 $config['sess_cookie_name'] = 'ci_session';
 $config['sess_expiration'] = 7200;
@@ -414,6 +414,7 @@ $config['sess_save_path'] = 'tcp://192.168.31.124:6379?&prefix=pmb:backend:'; //
 $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 0;
 $config['sess_regenerate_destroy'] = FALSE;
+*/
 
 
 /*
